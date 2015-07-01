@@ -11,10 +11,13 @@
 #import "SQLQueryHandler.h"
 #import "Patient.h"
 #import <FMDB/FMResultSet.h>
+#define authToken @"6812aa2da2aef7482c546596d8ff66b1be72dcd0"
+//#define authToken @"b67a7640a60facf1aaa17a470f2a97e340250b8d"
 
 @interface ViewController (){
     NSDate *countDate;
     NSInteger *patientCount;
+    
 }
 
 @end
@@ -25,8 +28,11 @@
     [super viewDidLoad];
     [self.syncButton addTarget:self action:@selector(syncButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.fetchFromDBButton addTarget:self action:@selector(fetchingFromDB:) forControlEvents:UIControlEventTouchUpInside];
+    patientCount = 0;
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+#pragma mark - FMDB methods
 
 -(void)syncButtonAction:(UIButton *)button
 {
@@ -39,15 +45,19 @@
 {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:@"b67a7640a60facf1aaa17a470f2a97e340250b8d" forHTTPHeaderField:@"x-auth-token"];
+    [manager.requestSerializer setValue:authToken forHTTPHeaderField:@"x-auth-token"];
     [manager.requestSerializer setValue:@"3.6" forHTTPHeaderField:@"x-ios-version"];
     [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [manager GET:modifiedAfter parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dict = responseObject;
         if ([[dict objectForKey:@"patients"] count] > 0)
         {
-            patientCount += [[dict objectForKey:@"count"] integerValue];
-            [self.syncLabel setText:[NSString stringWithFormat:@"%d of %d patients",(int)patientCount,[[dict objectForKey:@"count"] intValue]]];
+            if (patientCount == 0)
+            {
+                patientCount = [[dict objectForKey:@"count"] integerValue];
+
+            }
+            [self.syncLabel setText:[NSString stringWithFormat:@"%d patients remaining",[[dict objectForKey:@"count"] intValue]]];
             __block NSString *modifiedAt = [[[dict objectForKey:@"patients"] lastObject] objectForKey:@"modified_at"];
             NSDateFormatter *dateFormater = [[NSDateFormatter alloc]init];
             [dateFormater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -100,6 +110,9 @@
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Done" message:[NSString stringWithFormat:@"To fetch %d patients it took %f seconds",dbCount,timeCount] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
 }
+
+
+#pragma mark - CoreDate Methods
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
