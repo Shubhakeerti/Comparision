@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A81898B0-7677-4B58-A12E-229D8F219807</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Comparision</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>33D2C49F7BFCA604E23A3ECF770FDF1E85F4A6CA</key>
+		<string>https://github.com/Shubhakeerti/Comparision.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Comparision.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>33D2C49F7BFCA604E23A3ECF770FDF1E85F4A6CA</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Shubhakeerti/Comparision.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>33D2C49F7BFCA604E23A3ECF770FDF1E85F4A6CA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>33D2C49F7BFCA604E23A3ECF770FDF1E85F4A6CA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Comparision</string>
+		</dict>
+	</array>
+</dict>
+</plist>
